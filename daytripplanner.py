@@ -32,12 +32,10 @@ towns['LAT_rad'], towns['LON_rad'] = np.radians(towns['LATITUDE']), np.radians(t
 towns['dLON'] = towns['LON_rad'] - math.radians(inputLong)
 towns['dLAT'] = towns['LAT_rad'] - math.radians(inputLat)
 towns['distance'] = 6367 * 2 * np.arcsin(np.sqrt(np.sin(towns['dLAT']/2)**2 + math.cos(math.radians(inputLat)) * np.cos(towns['LAT_rad']) * np.sin(towns['dLON']/2)**2))
-print(towns['distance'])
 
 #filter out towns outside of radius
 inputRadius = inputRadius/0.621371
 towns = towns[towns['distance'] <= inputRadius]
-print(towns)
 
 #return random town within radius
 randomTown = towns.sample()
